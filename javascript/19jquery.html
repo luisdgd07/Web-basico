@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+<style>
+
+img{
+	opacity:0.5;
+}
+
+
+</style>
+<script src="jquery-3.2.1.js"></script>
+<script>
+
+$(document).ready(function() {
+	$("#imagen").mouseover(function(){
+		$(this).animate({
+			opacity : 1
+		},250);
+	});
+		$("#imagen").mouseout(function(){
+		$(this).animate({
+			opacity : 0.5
+		},250);
+	});
+});
+
+
+</script>
+</head>
+
+<body>
+<img src="1.jpg" width="300" height="200" id="imagen">
+
+</body>
+</html>

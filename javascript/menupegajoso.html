@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Menu Pegajoso</title>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript" src="jquery-3.2.1.js"></script>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			-webkit-box-sizing:border-box;
+			-moz-box-sizing:border-box;
+			box-sizing: border-box;
+		}
+		.contenedor{
+			width: 95%;
+			max-width: 1000px;
+			margin: auto;
+		}
+		.contenedor p{
+			margin-bottom: 40px;
+		}
+		header nav{
+			background: #000000;
+			margin-bottom: 10px;
+			-webkit-transition:all ease 10s;
+			-o-transition:all ease 10s;
+			transition:all ease 10s;
+		}
+		header nav ul{
+			list-style: none;
+			overflow: hidden;
+		}
+		header nav ul li{
+			float: left;
+		}
+		header nav ul li a{
+			display: block;
+			padding-top: 20px;
+			padding-bottom: 20px;
+			padding-right: 75px;
+			padding-left: 76px;
+			color: #FFFFFF;
+			text-decoration:none;
+			text-align: center;
+		}
+		header nav ul li a:hover{
+			background:#106280;
+		}
+		.menu-fixed{
+			position: fixed;
+			z-index: 1000;
+			top: 0px;
+			width: 100%;
+			max-width: 1000px;
+			box-shadow: 0px 4px 3px;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			var altura=$(".menu").offset().top;
+			$(window).on("scroll",function() {
+				if($(window).scrollTop() > altura){
+					$(".menu").addClass("menu-fixed");
+				}else {
+					$(".menu").removeClass("menu-fixed");
+				}
+			})
+		})
+	</script>
+</head>
+<body>
+	<header>
+		<div class="contenedor">
+			<div class="logo">
+				<img src="1.jpg" alt="">
+			</div>
+			<nav class="menu">
+				<ul>
+					<li><a href="#" title="">Inicio</a></li>
+					<li><a href="#" title="">Blog</a></li>
+					<li><a href="#" title="">Proyectos</a></li>
+					<li><a href="#" title="">Trabajos</a></li>
+					<li><a href="#" title="">Contacto</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div class="contenedor">
+		<p>
+			1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			3 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			4 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			5 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			6 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			7 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			8 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			9 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			10 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			11 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+		<p>
+			12 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut fringilla nisi. Nullam non dignissim ipsum, vel mollis leo. Morbi nec justo nec libero iaculis euismod efficitur ac nisi. Phasellus dictum commodo iaculis. Maecenas mattis est in neque volutpat molestie. Pellentesque id interdum purus. Vestibulum fringilla felis augue, id lobortis arcu ultricies sit amet. Curabitur ipsum diam, mattis a ligula sed, ullamcorper euismod ante. Proin viverra vestibulum leo quis sagittis.
+		</p>
+	</div>
+</body>
+</html>

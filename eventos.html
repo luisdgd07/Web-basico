@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+<title>eventos</title>
+</head>
+<body>
+    <button id="boton">Boton</button>
+    <input type="text" id="input">
+    <script>
+    (function(){
+        var saludo = function(){
+            alert("saludo");
+        };
+        var boton = document.getElementById("boton");
+        boton.addEventListener("click", saludo)
+        // para remover eventos
+        // boton.removeEventListener("click", saludo);
+    }())
+    </script>
+</body>
+</html>

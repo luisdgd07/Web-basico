@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>2 jquery</title>
+	<script src="jquery-3.2.1.js" type="text/javascript"></script>
+	<style>
+		#anuncio{
+			color:#FFFFFF;
+			background: #125060;
+		}
+	</style>
+	<script>
+		$(document).ready(function() {
+			$("#anuncio").width(500).height(500).text("hola").hide().fadeIn(2000);
+		});
+	</script>
+</head>
+<body>
+	<div id="anuncio">
+		Hola
+	</div>
+</body>
+</html>

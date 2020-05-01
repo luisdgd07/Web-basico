@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Document Object Model</title>
+</head>
+<bodyt>
+<h1 id="titulo"> Bienvenidos</h1>
+<div id="subtitulo"></div>
+<p>1 <b>hola</b> como estas</p>
+<p id="segundo">2 como esta todo</p>
+<p>3 adios a todos</p>
+<script>
+	var elementosP = document.getElementsByTagName("p");
+	var segundoParrafo = document.getElementById("segundo");
+	// en la consola .innerhtml modifica el texto
+
+	// 1 crear elemento
+	var elemento = document.createElement("h2");
+	// 2 crear nodo de texto al elemento
+	var contenido = document.createTextNode("este es el titular");
+	// agregar el nodo de texto al elemento
+	elemento.appendChild(contenido);
+	// agregar atributos al elemento 
+	elemento.setAttribute("align", "center");
+	// agregar el elemento al documento
+	document.getElementById("subtitulo").appendChild(elemento);
+</script>
+</body>
+</html>

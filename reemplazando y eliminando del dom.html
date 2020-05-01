@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>reeemplazando, eliminado nodos del dom</title>
+</head>
+<body>
+<ol id="lista">
+	<li id="primero">Lorem ipsum dolor sit amet, consectetur adipisicing elit</li>
+	<li>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</li>
+</ol>
+<script>
+	//var elemento = document.createElement("li");
+	//var contenido = document.crateTextNode("Nuevo Texto");
+	//elemento.appendChild(contenido);
+// para modificar
+//var primerElemento = document.getElementById('primero');
+//primerElemento.innerHTML = "Nuevo Texto";
+// con .textContent no se muestra negritas ni cursiva
+
+// para reemplazar
+//var elemento = document.createElement("li");
+//var contenido = document.createTextNode("Nuevo Texto");
+
+//elemento.appendChild(contenido);
+
+//var padre = document.getElementsByTagName("li")[0].parentNode;
+//var referencia = document.getElementsByTagName("li")[0];
+//padre.replaceChild(elemento, referencia);
+
+// para eliminar
+
+var elemento = document.createElement("li");
+var contenido = document.createTextNode("Nuevo Texto");
+
+elemento.appendChild(contenido);
+
+var padre = document.getElementsByTagName('li')[0].parentNode,
+referencia = document.getElementsByTagName('li')[0];
+padre.removeChild(referencia);
+</script>
+</body>
+</html>

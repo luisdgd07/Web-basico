@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>modificando estilos de los elementos</title>
+	<style>
+	.thumb{
+		width: 200px;
+		transition: 300msall ease;
+	}
+	.grande{
+		width: 400px;
+	}
+	.titulo{
+		border: 1px solid navy;
+		background: #ccc;
+		padding: 10px;
+	}
+	.titulogrande{
+		font-size: 60px;
+	}
+	</style>
+</head>
+<body>
+<h1 id="encabezado" class="">soy un encabezado \^.^/ </h1>
+<script>
+	var encabezado = document.getElementById('encabezado');
+    encabezado.className = encabezado.className.replace("titulogrande", "");
+    //para modificar los estilos
+    //encabezado.style.background = "navy";
+    //encabezado.style.color = "#fff";
+</script>
+
+</body>
+</html>

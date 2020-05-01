@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>calculadora</title>
+	<style>
+	body{
+		margin-left: 400px;
+		background: #1AB9E7
+	}
+	button{
+		height: 80px;
+		width: 80px;
+		font-size: 30px;
+		background: #1078B4;
+		border-color: #020711;
+	}
+	</style>
+</head>
+<body>
+<div>
+</br>
+<h1 id="num"></h1>
+<button id="borrar" onclick="borrar()"><</button>
+</br>
+</br>
+<button id="uno" onclick="uno()">1</button>
+<button id="dos" onclick="dos()">2</button>
+<button id="tres" onclick="tres()">3</button>
+</br>
+</br>
+<button id="cuatro" onclick="cuatro()">4</button>
+<button id="cinco" onclick="cinco()">5</button>
+<button id="seis" onclick="seis()">6</button>
+</br>
+</br>
+</div>
+<button id="siete" onclick="siete()">7</button>
+<button id="ocho" onclick="ocho()">8</button>
+<button id="nueve" onclick="nueve()">9</button>
+</br>
+</br>
+<button id="cero" onclick="cero()">0</button>
+<button id="menos" onclick="menos()">-</button>
+<button id="mas" onclick="mas()">+</button>
+</br>
+</br>
+<button id="por" onclick="por()">*</button>
+<button id="entre" onclick="entre()">/</button>
+<button id="igual" onclick="igual">=</button>
+</div>
+<script>
+		function borrar(){
+			
+		}
+		function uno(){
+			numeros = document.getElementById("num");
+			nu1 = document.createTextNode('1');
+			nm = nu1.parseInt(nu1);
+			numeros.appendChild(nm);
+		}
+		function dos(){
+			numeros = document.getElementById("num");
+			nu2 = document.createTextNode('2');
+			numeros.appendChild(nu2);
+		}
+		function tres(){
+			numeros = document.getElementById("num");
+			nu3 = document.createTextNode('3');
+			numeros.appendChild(nu3);
+		}
+		function cuatro(){
+			numeros = document.getElementById("num");
+			nu4 = document.createTextNode('4');
+			numeros.appendChild(nu4);
+		}
+		function cinco(){
+			numeros = document.getElementById("num");
+			nu5 = document.createTextNode('5');
+			numeros.appendChild(nu5);
+		}
+		function seis(){
+			numeros = document.getElementById("num");
+			nu6 = document.createTextNode('6');
+			numeros.appendChild(nu6);
+		}
+		function siete(){
+			numeros = document.getElementById("num");
+			nu7 = document.createTextNode('7');
+			numeros.appendChild(nu7);
+		}
+		function ocho(){
+			numeros = document.getElementById("num");
+			nu8 = document.createTextNode('8');
+			numeros.appendChild(nu8);
+		}
+		function nueve(){
+			numeros = document.getElementById("num");
+			nu9 = document.createTextNode('9');
+			numeros.appendChild(nu9);
+		}
+		function cero(){
+			numeros = document.getElementById("num");
+			nu0 = document.createTextNode('0');
+			numeros.appendChild(nu0);
+		}
+		function menos(){
+			numeros = document.getElementById("num");
+			nu = document.createTextNode("-");
+			numeros.appendChild(nu);
+		}
+		function mas(){
+			numeros = document.getElementById("num");
+			nu4 = document.createTextNode("+");
+			numeros.appendChild(nu4);
+		}
+		function por(){
+			numeros = document.getElementById("num");
+			nu4 = document.createTextNode("*");
+			numeros.appendChild(nu4);
+		}
+		function entre(){
+			numeros = document.getElementById("num");
+			nu4 = document.createTextNode("/");
+			numeros.appendChild(nu4);
+		}
+		function igual({}
+</script>
+</body>
+</html>

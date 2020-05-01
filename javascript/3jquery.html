@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<script src="jquery-3.2.1.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="">
+	<style>
+		.micontenedor{
+			background: #DD5656;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			//alert($("#errores h2").html());
+			//preppend lo agrega destras   after y before
+			$("#errores").append("<p>error</p>");
+
+		});
+	</script>
+</head>
+<body>
+	<div id="contenedor">
+		<div id="errores" class="micontenedor">
+			<h2>Errores</h2>
+		</div>
+	</div>
+</body>
+</html>

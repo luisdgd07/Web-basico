@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>carga en servidores</title>
+<script src="jquery-3.2.1.js"></script>
+<script>
+
+	$(document).ready(function() {
+		var foton=new Image();
+		foton.src="1.jpg";//tambien se puede hacer con arrays para varias imagnenes
+		$("#foto").hover(function(){
+			
+			$(this).attr("src",foton.src);
+			
+		},
+		function(){
+			
+			$(this).attr("src","2.jpg");
+			
+			
+		});	
+		
+    });
+
+
+</script>
+</head>
+
+<body>
+
+<img src="1.jpg" width="300" height="200" id="foto">
+</body>
+</html>

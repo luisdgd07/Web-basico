@@ -1,0 +1,26 @@
+<DOCTYPE html>
+    <head>
+        <title>timers, timeout e interval</title>
+    </head>
+    <body>
+        <script>
+            (function(){
+                var contador = 0;
+                
+                //Timeout setTimeout(variable, tiempo en ms)
+                var saludo = function(){
+                    contador++;
+                    console.log(contador);
+                    if (contador === 5){
+                        clearInterval(intervalo);
+                    }
+                };
+                //setTimeout(saludo, 5000);
+                
+                //Interval: ejecuta un codigo cada cierto tiempo
+                var intervalo = setInterval(saludo, 2000);
+                
+            }())
+        </script>
+    </body>
+</DOCTYPE>

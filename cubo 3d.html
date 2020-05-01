@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>cubo 3d</title>
+    <script src="jquery-3.1.1.js"></script>
+	<style>
+	.container{
+		width: 150px;
+		height: 150px;
+		margin: 50px auto;
+		position: relative;
+	}
+	#cube{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		transform-style: preserve-3d;
+		transition: transform 2s;
+	}
+	#cube figure{
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		border: 2px solid black;
+		position: absolute;
+	}
+	#cube .back{
+		background: hsla(0, 100%, 50%, 0.5);
+		transform: rotateX(0deg) translateZ(-75px);
+	}
+	#cube .left{
+		background: hsla(60, 100%, 50%, 0.5);
+		transform: rotateY(90deg) translateZ(-75px);
+	}
+	#cube .bottom{
+		background: hsla(120, 100%, 50%, 0.5);
+		transform: rotateX(90deg) translateZ(-75px);
+	}
+	.container{
+		perspective: 400px;
+	}
+	#cube .front{
+		background:  hsla(180, 100%, 50%, 0.5);
+		transform: rotateX(0deg) translateZ(75px);
+	}
+	#cube .right{
+		background: hsla(240, 100%, 50%, 0.5);
+		transform: rotateY(90deg) translateZ(75px);
+	}
+	#cube .top{
+		background: hsla(320, 100%, 50%, 0.5);
+		transform: rotateX(90deg) translateZ(75px);
+	}
+	.botones{
+		width: 30px;
+		height: 30px;
+		margin: 0 auto;
+		position: relative;
+	}
+	.boton{
+		width: 30px;
+		height: 30px;
+		background-color: black;
+		border-radius: 50%;
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		line-height: 30px;
+		cursor: pointer;
+		position: absolute;
+		user-select:none;
+	}
+	#abajo{
+		top: 35px;
+	}
+	#izquierda{
+		top: 35px;
+		left: -35px;
+	}
+	#derecha{
+		top: 35px;
+		left: 35px;
+	}
+	</style>
+</head>
+<body onkeydown="control(event);">
+<section class="container">
+	<div id="cube">
+		<figure class="back"></figure>
+		<figure class="left"></figure>
+		<figure class="bottom"></figure>
+		<figure class="front"></figure>
+		<figure class="right"></figure>
+		<figure class="top"></figure>
+	</div>
+</section>
+<section class="botones">
+	<div class="boton" id="arriba">▲</div>
+	<div class="boton" id="abajo">▼</div>
+	<div class="boton" id="izquierda">◄</div>
+	<div class="boton" id="derecha">►</div>
+</section>
+<script>
+var angX = 0;
+var angY = 0;
+
+ $('.boton').on('click' ,function() {
+ 	switch ($(this).attr("id")){
+ 		case "arriba":
+ 		angX = angX + 90;
+ 		break;
+ 		case "abajo":
+ 		angX = angX - 90;
+ 		break;
+ 		case "derecha":
+ 		angY = angY + 90;
+ 		break;
+ 		case "izquierda":
+ 		angY = angY - 90;
+ 		break; 
+ 	}
+ 	$('#cube').attr('style', 'transform: rotateX(' + angX + 'deg) rotateY(' + angY + 'deg);')
+ });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,228 @@
+var VERSION = '0.9.5';
+
+var dgebi = function(id) {
+    return document.getElementById(id);
+}
+var cryptoRate = 1;
+
+var rates = {
+    'USD_TO_BSF_RATE':0,
+    'BTC_TO_USD_RATE':0,
+    'BCH_TO_USD_RATE':0,
+    'ETH_TO_USD_RATE':0,
+    'ETC_TO_USD_RATE':0,
+    'LTC_TO_USD_RATE':0,
+    'XMR_TO_USD_RATE':0,
+    'DASH_TO_USD_RATE':0,
+    'ZEC_TO_USD_RATE':0,
+    'XRP_TO_USD_RATE':0
+}
+
+var SYMBOLS = {
+    'BTC_TO_USD_RATE':'BTC',
+    'BCH_TO_USD_RATE':'BCH',
+    'ETH_TO_USD_RATE':'ETH',
+    'ETC_TO_USD_RATE':'ETC',
+    'LTC_TO_USD_RATE':'LTC',
+    'XMR_TO_USD_RATE':'XMR',
+    'DASH_TO_USD_RATE':'DASH',
+    'ZEC_TO_USD_RATE':'ZEC',
+    'XRP_TO_USD_RATE':'XRP'
+}
+
+var NAMES = {
+    'BTC_TO_USD_RATE':'Bitcoin',
+    'BCH_TO_USD_RATE':'Bitcoin Cash',
+    'ETH_TO_USD_RATE':'Ether',
+    'ETC_TO_USD_RATE':'Ether Classic',
+    'LTC_TO_USD_RATE':'Litecoin',
+    'XMR_TO_USD_RATE':'Monero',
+    'DASH_TO_USD_RATE':'Dash',
+    'ZEC_TO_USD_RATE':'ZCash',
+    'XRP_TO_USD_RATE':'Ripple'
+}
+
+var TWITTER_RELOAD_PARAMS = {
+    'usdToBsfRate':0,
+    'cryptoTicker':'BTC',
+    'cryptoToUSDRate':0,
+    'tokenName':'Bitcoin'
+}
+
+/** 
+ * amount = amount of currency.
+ * rate:float = exchange rate on other currency.
+ * comissionRate:float (optional)
+*/
+function convert(amount, rate, comissionRate) {
+    var result = amount * rate;
+    if (comissionRate !== undefined && comissionRate > 0) {
+	result = result * (1 + comissionRate);
+    }
+    return result;
+}
+
+function isNumber(v) {
+    return !isNaN(v);
+}
+
+function roundTo2Decimals(v) {
+  return Math.round(v*100)/100;
+}
+
+function fixBitcoinDecimals(num) {
+    //truncates number to contain only 8 decimal spaces.
+    var numStr = new String(num);
+    var decimalOffset = numStr.indexOf(".");
+    if (decimalOffset != -1) {
+	var integerPart = numStr.substring(0, decimalOffset);
+	decimalOffset++;
+	var decimals = numStr.substring(decimalOffset,decimalOffset+8);
+	num = Number(integerPart + '.' + decimals).valueOf();
+    }
+    return num;
+}
+
+function onCryptoRateUpdate(cryptoRateKey) {
+    cryptoRate = rates[cryptoRateKey]; // the last rate selected
+    
+    var cryptoButton = dgebi('crypto_button');
+    var cryptoTicker = SYMBOLS[cryptoRateKey];
+
+    cryptoButton.innerHTML = cryptoTicker;
+
+    reloadTwitterButton(rates['USD_TO_BSF_RATE'], //usdToBsFRate
+			cryptoTicker, // cryptoTicker
+			cryptoRate, //cryptoToUSDRate
+			NAMES[cryptoRateKey]); //tokenName
+    updateFromCrypto(cryptoRate);
+}
+
+function updateFromCrypto(lastCryptoRate) {
+    cryptoRate = lastCryptoRate;
+    var crypto = Number(dgebi('crypto_text').value);
+
+    if (isNumber(crypto)) {
+        if (crypto < 0) { 
+            crypto = -1 * crypto; 
+            dgebi('crypto_text').value = crypto;
+        }
+        usds = roundTo2Decimals(convert(crypto,cryptoRate,0));
+        dgebi('usd_text').value = usds;
+
+        bsfs = roundTo2Decimals(usds * rates['USD_TO_BSF_RATE']);
+        dgebi('bsf_text').value = bsfs;
+    }
+}
+
+function updateFromBsF() {
+    var bsf = Number(dgebi('bsf_text').value);
+    if (isNumber(bsf)) {
+        if (bsf < 0) {
+            bsf = -1 * bsf;
+            dgebi('bsf_text').value = bsf;
+        }
+	usds = roundTo2Decimals(bsf / rates['USD_TO_BSF_RATE']);
+        dgebi('usd_text').value = usds;
+
+        btcs = usds / cryptoRate;
+        dgebi('crypto_text').value = fixBitcoinDecimals(btcs);
+    }
+}
+
+function updateFromUSD() {
+    var usds = Number(dgebi('usd_text').value);
+    if (isNumber(usds)) {
+        if (usds < 0) {
+            usds = -1 * usds;
+            dgebi('usd_text').value = usds;
+        }
+
+	btcs = usds / cryptoRate;
+        dgebi('crypto_text').value = fixBitcoinDecimals(btcs);
+
+        bsfs = roundTo2Decimals(usds * rates['USD_TO_BSF_RATE']);
+        dgebi('bsf_text').value = bsfs;
+    }
+}
+
+function reloadTwitterButton(usdToBsfRate, cryptoTicker, cryptoToUSDRate, tokenName) {
+    var twitterButtonDiv = dgebi('twitterButtonDiv');
+    // this is way faster than .innerHTML = '' see http://jsperf.com/innerhtml-vs-removechild
+    while (twitterButtonDiv.firstChild) {
+	twitterButtonDiv.removeChild(twitterButtonDiv.firstChild);
+    }
+    appendTwitterButton(usdToBsfRate, cryptoTicker, cryptoToUSDRate, tokenName);
+}
+
+function appendTwitterButton(usdToBsfRate, cryptoTicker, cryptoToUSDRate, tokenName) {
+    TWITTER_RELOAD_PARAMS['usdToBsfRate']=usdToBsfRate;
+    TWITTER_RELOAD_PARAMS['cryptoTicker']=cryptoTicker;
+    TWITTER_RELOAD_PARAMS['cryptoToUSDRate']=cryptoToUSDRate;
+    TWITTER_RELOAD_PARAMS['tokenName']=tokenName;
+    
+    var twitterButtonDiv = dgebi('twitterButtonDiv');
+    twttr.widgets.load()
+    var tweetText = 'Precio de ' + tokenName + '\r\n1 ' + cryptoTicker + ' = USD $' + Number(cryptoToUSDRate) +
+	'\r\nvia';
+
+    var includeBS = dgebi('includeBS').checked;
+    
+    if (includeBS) {
+	tweetText = 'Precio de ' + tokenName + ' en Bolívares\r\n1 ' + cryptoTicker + ' = USD $' + Number(cryptoToUSDRate) + ' = Bs '+ roundTo2Decimals(Number(cryptoToUSDRate*usdToBsfRate)) + '\r\n(USD $1 = Bs ' + usdToBsfRate +')\r\nvia';
+    }
+
+    text = '<a href="https://twitter.com/share" class="twitter-share-button" data-text="' + tweetText + '" data-via="" data-related="diariobitcoin">Tweet</a>' +	"<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>";
+    twitterButtonDiv.innerHTML = text;
+
+    //wait for twitter to load, then refresh button.
+    setTimeout(function() { twttr.widgets.load(); }, 1000);
+}
+
+function onIncludeBSChecked() {
+    p = TWITTER_RELOAD_PARAMS;
+    reloadTwitterButton(p['usdToBsfRate'], p['cryptoTicker'], p['cryptoToUSDRate'], p['tokenName']);
+}
+
+function fetchRates(rateKey, tokenName) {
+    dgebi('versionSpan').innerHTML=VERSION;
+    
+    if (window.XMLHttpRequest){ xmlhttp=new XMLHttpRequest(); } else { xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); }
+        xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            rates = JSON.parse(xmlhttp.responseText);
+            USD_TO_BSF_RATE = rates['USD_TO_BSF_RATE'];
+	    updateFromCrypto(rates[rateKey]);	    
+            var numUsdToBsFRate = Number(USD_TO_BSF_RATE);
+	    dgebi('lechugas').innerHTML = numUsdToBsFRate;
+            dgebi('lechugas2').innerHTML = numUsdToBsFRate;
+	    console.log('httpCallback -> rateKey=' + rateKey + ' -> rate=' + rates[rateKey])
+            appendTwitterButton(USD_TO_BSF_RATE, SYMBOLS[rateKey], rates[rateKey], tokenName);
+	}
+    }
+
+    xmlhttp.open("GET","http://www.bitven.com/assets/js/rates.js",true);
+    xmlhttp.send();
+}
+
+function copyToClipboard(textId) {
+    var textField = document.getElementById(textId);
+    textField.focus();
+    textField.select();
+    document.execCommand('copy');
+
+    var statusText = '<strong>' + textField.value + '</strong> copiado al portapapeles';
+    var status_title = document.getElementById('status_title');
+    status_title.innerHTML = statusText;
+
+    // Restore the status_title HTML a few seconds later.
+    setTimeout(function(title) {
+            title.innerHTML = 'CALCULADORA INTERACTIVA';
+        },
+        4000,
+        status_title);
+}
+
+function hideUSD() {
+    document.getElementById('dollarParity').setAttribute("style","display:none");
+}

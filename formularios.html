@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<head>
+<title>formularios</title>
+</head>
+<body>
+    <form action="" name="formulario" method="get">
+        <input type="text" name="nombre" id="nombre" maxlength="30" placeholder="Nombre:" >
+        <br>
+        
+        <input type= "radio" name="sexo" id"hombre" value="hombre">hombre
+        <input type="radio" name="sexo" id="mujer" value="mujer" >mujer
+        <br>
+        <input type="checkbox" name="terminos" id="terminos" >terminos y condiciones
+        <br>
+        <input type="submit" id="btn" name="btn" value="enviar">
+    </form>
+          
+<script>
+    (function(){
+        var formulario = document.getElementsByName("formulario")[0];
+        var eventos = formulario.elements;
+        boton = document.getElementById("btn");
+        // se crean tres funciones
+        var validarNombre = function(e){
+            if (formulario.nombre.value == 0){
+                alert("completa el campo");
+                e.preventDefault();
+            }
+        } ;
+        var validarRadio = function(e){
+            if(formulario.sexo[0].checked == true || formulario.sexo[1].checked == true){
+                
+            } else{
+                alert("completa sexo");
+                e.preventDefault();
+            }
+        };
+        var validarCheckbox = function(e){
+            if(formulario.terminos.checked == false){
+                alert("acepta los terminos");
+                e.preventDefault;
+            }
+        }
+        var validar = function(e){
+            validarNombre(e);
+            validarRadio(e);
+            validarCheckbox(e);
+        }
+        
+        formulario.addEventListener("submit", validar)
+    }())
+    </script>
+</body>
